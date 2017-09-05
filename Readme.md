@@ -1,4 +1,50 @@
-Using the A.L.I.C.E. AIML files
+Some while ago I wrote a short tutorial about how to create an AIML chatbot and output its text
+via espeak (https://iniy.org/?p=68).
+
+AFter years I stumbled over this post again and now here is a second part which loads the AI Foundation's A.L.I.C.E.
+AIML from http://www.alicebot.org/aiml.html .
+
+To be honest I was a bit surprised about how little and hard to find documentation there is on the
+net to get this simple aiml files to run. There is a bit hard to find google code page:
+https://code.google.com/archive/p/aiml-en-us-foundation-alice/
+
+But the AIML is optimized for the Pandorabots online plattform and I wanted just to play around
+a bit with this stuff locally.
+
+So here is a repository with batteries included:
+
+- Based on aiml-en-us-foundation-alice-1.9 zip file from the AI Foundation google code website
+- removed Pandorabots specific syntax
+- added std-startup.aiml with the (I think) correct load-order of the aiml files
+- minimal version of a python chatbot
+
+## Setup
+
+Requires python3 (but porting this minimal script to python 2 is very easy)
+
+
+    pip3 install python-aiml
+
+Then just run
+
+    ./chatbot.py
+    
+## Where to go from here
+
+This minimal script doesn't implement a preprocessor and due to the removal of some pandorabots
+special syntax it might give some odd answers, but it is a starting point.
+
+Add your own AIML files at the bottom of the std-startup.aiml (so they have highest priority)
+and play around making the bot smarter.
+
+Including the espeak output from my other blog post also might be fun (https://iniy.org/?p=68).
+
+## General Documentation (from AI Foundation google code website)
+
+As I had a hard time finding the loading order information I include this here in the repo.
+
+
+### Using the A.L.I.C.E. AIML files
 
 The aiml-en-us-foundation-alice files contain a number of categories with duplicate patterns. Depending on the AIML interpreter used, duplicates are handled differently.
 
@@ -11,12 +57,12 @@ A.L.I.C.E. AIML File Order
 
 The A.L.I.C.E. AIML files in aiml-en-us-foundation-alice should be loaded in the following order:
 
-    First load the Safe reduction files reducation0.safe.aiml,...,reduction4.safe.aiml and reductions.update.aiml.
-    Second, load the Mindpixel files mp0.aiml,...,mp6.aiml.
-    Then load all remaining AIML files.
-    Pandorabots will always load the file update.aiml as the last file.
+- First load the Safe reduction files reducation0.safe.aiml,...,reduction4.safe.aiml and reductions.update.aiml.
+- Second, load the Mindpixel files mp0.aiml,...,mp6.aiml.
+- Then load all remaining AIML files.
+- Pandorabots will always load the file update.aiml as the last file.
 
-AIML utilizes a preprocessing step called Normalization.
+### AIML utilizes a preprocessing step called Normalization.
 
 This AIML set is designed to work with the default AIML preprocessor supplied with Pandorabots.com.
 
